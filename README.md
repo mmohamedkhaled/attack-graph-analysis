@@ -1,6 +1,7 @@
 # Attack Graph Analysis
 
 [![CI](https://github.com/mmohamedkhaled/attack-graph-analysis/actions/workflows/ci.yml/badge.svg)](https://github.com/mmohamedkhaled/attack-graph-analysis/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/attack-graph-analysis.svg)](https://pypi.org/project/attack-graph-analysis/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
