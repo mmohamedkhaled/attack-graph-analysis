@@ -1,0 +1,22 @@
+{
+  "name": "Deep Defense",
+  "description": "A single, long, expensive exploit chain with only one route and a single chokepoint (min vertex cut = 1). High attack cost and low multiplicity make this a well-defended network.",
+  "source": "s",
+  "target": "t",
+  "vertices": ["s", "a", "b", "c", "d", "t"],
+  "edges": [
+    {"from": "s", "to": "a", "weight": 4},
+    {"from": "a", "to": "b", "weight": 4},
+    {"from": "b", "to": "c", "weight": 4},
+    {"from": "c", "to": "d", "weight": 4},
+    {"from": "d", "to": "t", "weight": 4}
+  ],
+  "node_roles": {
+    "s": "public web server",
+    "t": "records database",
+    "a": "DMZ firewall",
+    "b": "bastion host",
+    "c": "internal router",
+    "d": "application tier"
+  }
+}

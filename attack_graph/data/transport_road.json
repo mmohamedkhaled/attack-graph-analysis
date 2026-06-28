@@ -1,0 +1,30 @@
+{
+  "name": "City Road Network",
+  "kind": "transport",
+  "description": "A municipal road network modelled as a directed weighted graph. Vertices are junctions, edges are road segments, weights are travel distance (km). The toolkit answers the same security questions as for a cyber network: what is the shortest route from the depot (origin) to the hospital (critical destination), which junctions are single points of failure, and how robust is the road mesh to closures?",
+  "source": "depot",
+  "target": "hospital",
+  "vertices": ["depot", "j1", "j2", "j3", "j4", "j5", "j6", "hospital"],
+  "edges": [
+    {"from": "depot", "to": "j1", "weight": 5},
+    {"from": "depot", "to": "j2", "weight": 8},
+    {"from": "j1", "to": "j3", "weight": 4},
+    {"from": "j2", "to": "j3", "weight": 3},
+    {"from": "j2", "to": "j4", "weight": 6},
+    {"from": "j3", "to": "j5", "weight": 5},
+    {"from": "j4", "to": "j5", "weight": 2},
+    {"from": "j4", "to": "j6", "weight": 4},
+    {"from": "j5", "to": "hospital", "weight": 3},
+    {"from": "j6", "to": "hospital", "weight": 7}
+  ],
+  "node_roles": {
+    "depot": "origin (logistics depot)",
+    "hospital": "destination (critical facility)",
+    "j1": "north junction",
+    "j2": "south junction",
+    "j3": "central junction",
+    "j4": "ring road junction",
+    "j5": "east junction",
+    "j6": "bypass junction"
+  }
+}

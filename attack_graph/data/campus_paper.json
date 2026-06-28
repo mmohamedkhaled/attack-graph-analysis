@@ -1,0 +1,31 @@
+{
+  "name": "Campus Network (paper)",
+  "description": "The university campus network from the research paper: a directed weighted DAG of exploit transitions from the public web server to the records database. Converges on Bellman-Ford iteration 2 with d(s,t)=11; min vertex cut = {v4, v5}.",
+  "source": "s",
+  "target": "t",
+  "vertices": ["s", "v1", "v2", "v3", "v4", "v5", "v6", "v7", "t"],
+  "edges": [
+    {"from": "s",  "to": "v1", "weight": 2},
+    {"from": "s",  "to": "v2", "weight": 4},
+    {"from": "s",  "to": "v3", "weight": 3},
+    {"from": "v1", "to": "v4", "weight": 3},
+    {"from": "v2", "to": "v4", "weight": 2},
+    {"from": "v3", "to": "v5", "weight": 5},
+    {"from": "v4", "to": "v5", "weight": 4},
+    {"from": "v4", "to": "v7", "weight": 3},
+    {"from": "v5", "to": "v6", "weight": 2},
+    {"from": "v6", "to": "t",  "weight": 1},
+    {"from": "v7", "to": "t",  "weight": 3}
+  ],
+  "node_roles": {
+    "s":  "public web server (entry point)",
+    "t":  "records database (protected asset)",
+    "v4": "internal pivot host",
+    "v5": "Active Directory server",
+    "v6": "application server",
+    "v7": "backup gateway",
+    "v1": "frontend proxy",
+    "v2": "mail relay",
+    "v3": "file server"
+  }
+}

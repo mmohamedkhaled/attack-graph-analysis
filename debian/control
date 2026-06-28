@@ -1,0 +1,46 @@
+Source: attack-graph-analysis
+Section: utils
+Priority: optional
+Maintainer: Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-sequence-python3,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-networkx,
+ python3-pytest,
+ python3-setuptools,
+Standards-Version: 4.7.0
+Vcs-Browser: https://github.com/mmohamedkhaled/attack-graph-analysis
+Vcs-Git: https://github.com/mmohamedkhaled/attack-graph-analysis.git
+Homepage: https://github.com/mmohamedkhaled/attack-graph-analysis
+Rules-Requires-Root: no
+
+Package: attack-graph-analysis
+Architecture: all
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3-networkx,
+Multi-Arch: foreign
+Recommends: python3-matplotlib
+Suggests:
+ nmap,
+ network-manager | wireless-tools,
+Description: Attack Graph Analysis -- weighted-graph security toolkit
+ aga models any network (an IT attack graph, a road system, a supply chain, a
+ social/influence graph) as a directed weighted graph and reasons about its
+ security and robustness with graph theory:
+ .
+  * CVSS v3.1 Exploitability-derived edge weights (every weight is traceable to
+    a public security standard);
+  * a from-scratch Bellman-Ford shortest-path implementation;
+  * Menger's Theorem machinery (vertex-disjoint paths + minimum vertex cut,
+    solved three independent ways) to find the smallest set of nodes to defend;
+  * a composite security score (0-100) with a letter grade (A-F).
+ .
+ The toolkit also constructs graphs from partial access (with observed-vs-
+ inferred provenance) and ingests live WiFi (nmcli/iwlist) and nmap scans.
+ .
+ It installs the `aga` command. Matplotlib is recommended for rendering graphs;
+ live scanning of WiFi/nmap requires explicit --i-am-authorized authorization.

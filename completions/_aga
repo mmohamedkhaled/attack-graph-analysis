@@ -1,0 +1,34 @@
+#compdef aga
+# zsh completion for the `aga` command (Attack Graph Analysis).
+# Install to /usr/share/zsh/vendor-completions/_aga or any directory in $fpath.
+
+_aga() {
+    local -a opts
+    opts=(
+        '-V[print version and exit]'
+        '--version[print version and exit]'
+        '-h[show help and exit]'
+        '--help[show help and exit]'
+        '--dir[analyse every *.json config in a directory and compare]:directory:_files -/'
+        '--graphs-dir[directory of preset graph configs]:directory:_files -/'
+        '--list[list available graph presets and exit]'
+        '--no-plot[skip generating the graph visualisation]'
+        '--explain-cvss[explain how a CVSS vector becomes a weight]:CVSS vector:'
+        '--list-templates[list built-in construction templates and exit]'
+        '--construct[construct a graph from a template]:template:(3-tier-webapp dmz-internal flat-lan)'
+        '--discover[construct from a discovery JSON file]:file:_files -g "*.json"'
+        '--wifi-from-file[construct a WiFi graph from a captured nmcli scan]:file:_files'
+        '--scan-wifi[run a LIVE passive WiFi scan]:interface:_net_interfaces'
+        '--i-am-authorized[assert authorization to scan]'
+        '--wifi-rescan[trigger a fresh nmcli rescan first]'
+        '--nmap[construct a graph from an nmap XML file]:file:_files -g "*.xml(-.)"'
+        '--nmap-live[run nmap LIVE against a target]:target:'
+        '--export[also export the analysed graph]:path:_files'
+    )
+
+    _arguments -C \
+        "$opts[@]" \
+        ':config:_files -g "*.json(-.)"'
+}
+
+_aga "$@"

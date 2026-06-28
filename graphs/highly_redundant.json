@@ -1,0 +1,30 @@
+{
+  "name": "Highly Redundant",
+  "description": "Three near-parallel attack corridors with cross-links give the attacker many independent, cheap routes. The minimum vertex cut is 3 (all three corridors must be blocked), yielding very poor security.",
+  "source": "s",
+  "target": "t",
+  "vertices": ["s", "a", "b", "c", "d", "e", "f", "t"],
+  "edges": [
+    {"from": "s", "to": "a", "weight": 1},
+    {"from": "s", "to": "b", "weight": 1},
+    {"from": "s", "to": "c", "weight": 1},
+    {"from": "a", "to": "d", "weight": 1},
+    {"from": "a", "to": "e", "weight": 1},
+    {"from": "b", "to": "e", "weight": 1},
+    {"from": "c", "to": "e", "weight": 1},
+    {"from": "c", "to": "f", "weight": 1},
+    {"from": "d", "to": "t", "weight": 1},
+    {"from": "e", "to": "t", "weight": 1},
+    {"from": "f", "to": "t", "weight": 1}
+  ],
+  "node_roles": {
+    "s": "public web server",
+    "t": "records database",
+    "a": "edge node A",
+    "b": "edge node B",
+    "c": "edge node C",
+    "d": "internal host D",
+    "e": "internal host E",
+    "f": "internal host F"
+  }
+}

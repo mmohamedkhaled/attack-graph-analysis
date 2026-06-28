@@ -1,0 +1,18 @@
+{
+  "name": "Single Chokepoint",
+  "description": "A short chain with exactly one attack path and a single critical chokepoint (min vertex cut = 1). Easy to fully mitigate by patching one host, though the attack cost itself is moderate.",
+  "source": "s",
+  "target": "t",
+  "vertices": ["s", "a", "b", "t"],
+  "edges": [
+    {"from": "s", "to": "a", "weight": 3},
+    {"from": "a", "to": "b", "weight": 4},
+    {"from": "b", "to": "t", "weight": 2}
+  ],
+  "node_roles": {
+    "s": "public web server",
+    "t": "records database",
+    "a": "frontend proxy",
+    "b": "internal pivot host (chokepoint)"
+  }
+}

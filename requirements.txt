@@ -1,0 +1,3 @@
+# Runtime dependencies ONLY. matplotlib is optional (install via the `plot`
+# extra: `pip install attack-graph-analysis[plot]`) so the base CLI is headless.
+networkx>=3.0

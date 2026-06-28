@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Attack Graph Analysis
+GenericName=Network Security Graph Analyser
+Comment=Model a network as a weighted directed graph and analyse its security
+Comment[cy]=Modelu rhwydwaith fel graff cyfeiriaredig pwysoli a dadansoddi ei ddiogelwch
+Exec=aga --no-plot
+Icon=utilities-terminal
+Terminal=true
+Categories=Network;Security;ConsoleOnly;
+Keywords=security;attack;graph;cvss;network;pentest;kali;
+StartupNotify=false

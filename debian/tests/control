@@ -1,0 +1,29 @@
+# autopkgtest(1) test definitions.
+# These run against the *installed* package, so they must not depend on the
+# source tree. They rely on the bundled preset graphs (package data) so a bare
+# `aga` works from any working directory.
+Test-Command: aga --version && aga -V && aga --help
+Depends: @
+Restrictions: allow-stderr
+Features: test-name=cli-version-and-help
+
+Test-Command: aga --explain-cvss "AV:N/AC:L/PR:N/UI:N"
+Depends: @
+Restrictions: allow-stderr
+Features: test-name=cli-explain-cvss
+
+Test-Command: aga --no-plot
+Depends: @
+Restrictions: allow-stderr
+Features: test-name=cli-default-analysis
+
+Test-Command: aga --list
+Depends: @
+Restrictions: allow-stderr
+Features: test-name=cli-list-presets
+
+# Structural import test (no source tree needed): the public API must be
+# importable from the installed package and report a PEP-440-ish version.
+Test-Command: python3 -c "import attack_graph; v=attack_graph.__version__; assert v and v[0].isdigit(); assert hasattr(attack_graph,'analyze'); assert hasattr(attack_graph,'load_graph')"
+Depends: @, python3-networkx
+Features: test-name=import-surface

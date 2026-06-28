@@ -1,0 +1,17 @@
+{
+  "name": "Isolated Target",
+  "description": "The records database 't' has no inbound exploit transitions, so it is completely unreachable from the public web server. This is a perfectly secure configuration (score 100, grade A).",
+  "source": "s",
+  "target": "t",
+  "vertices": ["s", "v1", "v2", "t"],
+  "edges": [
+    {"from": "s",  "to": "v1", "weight": 2},
+    {"from": "v1", "to": "v2", "weight": 3}
+  ],
+  "node_roles": {
+    "s":  "public web server",
+    "t":  "records database (air-gapped)",
+    "v1": "frontend proxy",
+    "v2": "internal host"
+  }
+}

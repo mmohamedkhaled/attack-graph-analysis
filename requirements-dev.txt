@@ -1,0 +1,9 @@
+-r requirements.txt
+
+# Mirrors the [dev] extra in pyproject.toml. Canonical dev install:
+#   pip install -e ".[dev]"
+matplotlib>=3.6
+pytest>=7.0
+pytest-cov>=4.0
+argcomplete>=3.1
+ruff>=0.4

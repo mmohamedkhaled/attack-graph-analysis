@@ -1,0 +1,30 @@
+{
+  "name": "Global Supply Chain",
+  "kind": "supply-chain",
+  "description": "A multi-tier supply chain modelled as a directed weighted graph. Vertices are facilities (suppliers, warehouses, distributors, factories) and edges are shipment lanes weighted by cost / lead-time. The toolkit treats it exactly like an attack graph: the cheapest sourcing route to a critical customer, the minimum set of facilities whose disruption severs supply, and an overall robustness score.",
+  "source": "supplier",
+  "target": "customer",
+  "vertices": ["supplier", "w1", "w2", "d1", "d2", "f1", "f2", "customer"],
+  "edges": [
+    {"from": "supplier", "to": "w1", "weight": 4},
+    {"from": "supplier", "to": "w2", "weight": 6},
+    {"from": "w1", "to": "d1", "weight": 3},
+    {"from": "w1", "to": "d2", "weight": 5},
+    {"from": "w2", "to": "d2", "weight": 2},
+    {"from": "d1", "to": "f1", "weight": 4},
+    {"from": "d2", "to": "f1", "weight": 3},
+    {"from": "d2", "to": "f2", "weight": 6},
+    {"from": "f1", "to": "customer", "weight": 2},
+    {"from": "f2", "to": "customer", "weight": 5}
+  ],
+  "node_roles": {
+    "supplier": "supplier origin",
+    "customer": "critical customer",
+    "w1": "warehouse 1",
+    "w2": "warehouse 2",
+    "d1": "distributor 1",
+    "d2": "distributor 2",
+    "f1": "factory 1",
+    "f2": "factory 2"
+  }
+}

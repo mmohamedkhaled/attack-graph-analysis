@@ -1,0 +1,31 @@
+{
+  "name": "Campus Network (CVSS-weighted)",
+  "description": "Same topology as the paper's campus network, but every edge weight is DERIVED from a CVSS v3.1 Exploitability vector instead of being hand-picked. Each transition is modelled as a realistic exploit (remote RCE, phishing, lateral movement, AD compromise, etc.), so the resulting weights are auditable rather than arbitrary. Compare against campus_paper.json to see the rigorous vs. simplified weighting.",
+  "source": "s",
+  "target": "t",
+  "vertices": ["s", "v1", "v2", "v3", "v4", "v5", "v6", "v7", "t"],
+  "edges": [
+    {"from": "s",  "to": "v1", "cvss": "AV:N/AC:L/PR:N/UI:N", "cve": "remote RCE on public web app"},
+    {"from": "s",  "to": "v2", "cvss": "AV:N/AC:H/PR:N/UI:N", "cve": "race condition in mail relay"},
+    {"from": "s",  "to": "v3", "cvss": "AV:N/AC:L/PR:N/UI:R", "cve": "stored-XSS pivoted via file server (phish)"},
+    {"from": "v1", "to": "v4", "cvss": "AV:A/AC:L/PR:L/UI:N", "cve": "SMB relay onto internal pivot host"},
+    {"from": "v2", "to": "v4", "cvss": "AV:A/AC:L/PR:L/UI:N", "cve": "SMB relay onto internal pivot host"},
+    {"from": "v3", "to": "v5", "cvss": "AV:L/AC:H/PR:H/UI:N", "cve": "local privesc to domain admin on AD"},
+    {"from": "v4", "to": "v5", "cvss": "AV:A/AC:H/PR:H/UI:N", "cve": "Kerberoasting across the subnet"},
+    {"from": "v4", "to": "v7", "cvss": "AV:A/AC:L/PR:L/UI:N", "cve": "default creds on backup gateway"},
+    {"from": "v5", "to": "v6", "cvss": "AV:N/AC:L/PR:H/UI:N", "cve": "app-server admin service abuse"},
+    {"from": "v6", "to": "t",  "cvss": "AV:N/AC:L/PR:L/UI:N", "cve": "DB account with low privileges"},
+    {"from": "v7", "to": "t",  "cvss": "AV:L/AC:L/PR:H/UI:N", "cve": "local dump of backup DB image"}
+  ],
+  "node_roles": {
+    "s":  "public web server (entry point)",
+    "t":  "records database (protected asset)",
+    "v4": "internal pivot host",
+    "v5": "Active Directory server",
+    "v6": "application server",
+    "v7": "backup gateway",
+    "v1": "frontend proxy",
+    "v2": "mail relay",
+    "v3": "file server"
+  }
+}

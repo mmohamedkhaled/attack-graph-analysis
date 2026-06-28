@@ -1,0 +1,30 @@
+{
+  "name": "Organisational Influence Graph",
+  "kind": "social",
+  "description": "An influence / communication network modelled as a directed weighted graph. Vertices are people, edges are relationships, weights are the resistance to influence along that tie (higher = harder to influence through). The toolkit answers: what is the cheapest influence chain from a source individual to a key decision-maker (the CEO), and which people are critical bridges whose isolation breaks all influence paths?",
+  "source": "source",
+  "target": "ceo",
+  "vertices": ["source", "a1", "a2", "b1", "b2", "c1", "c2", "ceo"],
+  "edges": [
+    {"from": "source", "to": "a1", "weight": 2},
+    {"from": "source", "to": "a2", "weight": 3},
+    {"from": "a1", "to": "b1", "weight": 4},
+    {"from": "a2", "to": "b1", "weight": 2},
+    {"from": "a2", "to": "b2", "weight": 5},
+    {"from": "b1", "to": "c1", "weight": 3},
+    {"from": "b2", "to": "c1", "weight": 4},
+    {"from": "b2", "to": "c2", "weight": 6},
+    {"from": "c1", "to": "ceo", "weight": 2},
+    {"from": "c2", "to": "ceo", "weight": 3}
+  ],
+  "node_roles": {
+    "source": "source individual",
+    "ceo": "key person (decision-maker)",
+    "a1": "acquaintance 1",
+    "a2": "acquaintance 2",
+    "b1": "mid-level contact 1",
+    "b2": "mid-level contact 2",
+    "c1": "executive aide 1",
+    "c2": "executive aide 2"
+  }
+}

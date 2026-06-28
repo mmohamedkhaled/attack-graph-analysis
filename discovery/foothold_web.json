@@ -1,0 +1,22 @@
+{
+  "name": "Foothold on web-01 (minimal access)",
+  "description": "We have compromised a single public web server (web-01) and discovered its immediate neighbours via a port scan. Everything beyond the first hop is inferred. This is the classic minimal-access / single-foothold scenario.",
+  "access": "minimal",
+  "kind": "security",
+  "source": "web-01",
+  "target": "db-01",
+  "hosts": [
+    {"id": "web-01",   "role": "public web server (foothold)", "observed": true},
+    {"id": "app-01",   "role": "application server",           "observed": true},
+    {"id": "auth-01",  "role": "authentication service",       "observed": true},
+    {"id": "ad-01",    "role": "Active Directory server",      "observed": false},
+    {"id": "db-01",    "role": "customer database (target)",   "observed": false}
+  ],
+  "links": [
+    {"from": "web-01",  "to": "app-01",  "weight": 2, "observed": true,  "evidence": "port scan from foothold"},
+    {"from": "web-01",  "to": "auth-01", "weight": 3, "observed": true,  "evidence": "port scan from foothold"},
+    {"from": "app-01",  "to": "db-01",   "weight": 4, "observed": false, "evidence": "inferred (app-to-db typical)"},
+    {"from": "auth-01", "to": "ad-01",   "weight": 3, "observed": false, "evidence": "inferred"},
+    {"from": "ad-01",   "to": "db-01",   "weight": 2, "observed": false, "evidence": "inferred"}
+  ]
+}

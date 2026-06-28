@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "attack-graph-analysis"
+dynamic = ["version"]
+description = "Attack Graph Analysis: a security toolkit for weighted directed networks (Bellman-Ford, Menger, CVSS)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+
+# Real maintainer format (PyPI requires a valid email for upload).
+authors = [
+    { name = "Mohamed Khaled", email = "mohamedabdelfatah572@aucegypt.edu" },
+]
+maintainers = [
+    { name = "Mohamed Khaled", email = "mohamedabdelfatah572@aucegypt.edu" },
+]
+
+keywords = [
+    "attack-graph", "security", "graph-theory", "bellman-ford",
+    "menger", "vulnerability", "cvss", "nmap", "wifi",
+    "penetration-testing", "kali-linux",
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: System :: Networking :: Monitoring",
+]
+
+# Hard runtime deps ONLY. networkx is the engine; matplotlib is optional
+# (see [project.optional-dependencies] -> plot) so the base CLI is headless
+# and lightweight, which matters for Kali/Debian packaging.
+dependencies = [
+    "networkx>=3.0",
+]
+
+[project.optional-dependencies]
+# Plotting: `pip install aga[plot]`
+plot = ["matplotlib>=3.6"]
+# Shell completions: `pip install aga[completions]`
+completions = ["argcomplete>=3.1"]
+# Dev / test tooling.
+dev = [
+    "ruff>=0.4",
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "matplotlib>=3.6",
+    "argcomplete>=3.1",
+]
+
+[project.scripts]
+# Installs the `aga` command on PATH (e.g. after `pipx install aga`).
+aga = "attack_graph.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mmohamedkhaled/attack-graph-analysis"
+Repository = "https://github.com/mmohamedkhaled/attack-graph-analysis"
+Issues = "https://github.com/mmohamedkhaled/attack-graph-analysis/issues"
+Changelog = "https://github.com/mmohamedkhaled/attack-graph-analysis/blob/main/CHANGELOG.md"
+"PyPI" = "https://pypi.org/project/attack-graph-analysis/"
+"CVSS v3.1 spec" = "https://www.first.org/cvss/v3.1/specification-document"
+
+[tool.setuptools.dynamic]
+version = { attr = "attack_graph.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["attack_graph*"]
+
+[tool.setuptools.package-data]
+attack_graph = ["py.typed", "data/*.json"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+extend-select = ["I"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
+testpaths = ["tests"]

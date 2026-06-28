@@ -1,0 +1,4 @@
+version=4
+opts=filenamemangle=s/.+\/v?@ANY_VERSION@\.tar\.gz/attack-graph-analysis-$1\.tar\.gz/ \
+  https://github.com/mmohamedkhaled/attack-graph-analysis/tags \
+  .*/v?@ANY_VERSION@\.tar\.gz debian uupdate

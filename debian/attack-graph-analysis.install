@@ -1,0 +1,10 @@
+# Install the man page.
+aga.1 /usr/share/man/man1/
+
+# Shell completions (named after the command, `aga`).
+completions/aga.bash /usr/share/bash-completion/completions/aga
+completions/_aga       /usr/share/zsh/vendor-completions/
+completions/aga.fish   /usr/share/fish/vendor_completions.d/
+
+# Desktop entry (documents the tool in application menus / launches a terminal).
+aga.desktop /usr/share/applications/

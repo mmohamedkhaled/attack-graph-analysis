@@ -1,0 +1,22 @@
+{
+  "name": "External attack surface (no access)",
+  "description": "We have NO access to the target organisation. From the outside we can only see which services are exposed to the internet (a web app and a VPN gateway). The entire interior is a hypothesis. The constructed graph records the exposed surface as observed and every internal path as inferred, so the analysis is explicitly a best-effort guess.",
+  "access": "none",
+  "kind": "security",
+  "source": "internet",
+  "target": "internal-data",
+  "hosts": [
+    {"id": "internet",       "role": "external vantage point",     "observed": true},
+    {"id": "web-edge",       "role": "public web application",      "observed": true},
+    {"id": "vpn-edge",       "role": "VPN gateway",                 "observed": true},
+    {"id": "internal-app",   "role": "internal application tier",   "observed": false},
+    {"id": "internal-data",  "role": "critical data store (target)","observed": false}
+  ],
+  "links": [
+    {"from": "internet",     "to": "web-edge",      "weight": 2, "observed": true,  "evidence": "public DNS / port 443 open"},
+    {"from": "internet",     "to": "vpn-edge",      "weight": 4, "observed": true,  "evidence": "public DNS / port 443 open"},
+    {"from": "web-edge",     "to": "internal-app",  "weight": 3, "observed": false, "evidence": "inferred interior"},
+    {"from": "vpn-edge",     "to": "internal-app",  "weight": 5, "observed": false, "evidence": "inferred interior"},
+    {"from": "internal-app", "to": "internal-data", "weight": 3, "observed": false, "evidence": "inferred interior"}
+  ]
+}

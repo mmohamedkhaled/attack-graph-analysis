@@ -1,0 +1,135 @@
+.TH AGA 1 "June 2026" "aga 0.1.0" "User Commands"
+.SH NAME
+aga \- Attack Graph Analysis: a security toolkit for weighted directed networks
+.SH SYNOPSIS
+.B aga
+.RI [ OPTIONS ]
+.RI [ CONFIG ]
+.SH DESCRIPTION
+\fBaga\fR models any network \(em an IT attack graph, a road system, a supply
+chain, a social/influence graph \(em as a directed weighted graph and reasons
+about its security and robustness using graph theory:
+.PP
+.IP \(bu 3
+CVSS v3.1 Exploitability-derived edge weights, so every weight is traceable to
+a public security standard;
+.IP \(bu 3
+a from-scratch Bellman-Ford shortest-path implementation (with negative-cycle
+detection);
+.IP \(bu 3
+Menger's Theorem machinery (maximum vertex-disjoint paths and minimum vertex
+cut, solved three independent ways) to find the smallest set of nodes to defend;
+.IP \(bu 3
+a composite security score (0\-100) with a letter grade (A\-F);
+.IP \(bu 3
+vulnerability hotspot detection that flags single points of failure.
+.PP
+The default behaviour analyses the bundled campus-network preset. Graphs are
+plain JSON config files (see
+.BR FILES ).
+.SH OPTIONS
+.TP
+.BR \-V ", " \-\-version
+Print the \fBaga\fR version and exit.
+.TP
+.BR \-h ", " \-\-help
+Show a short usage summary and exit.
+.TP
+.BI \-\-dir " DIRECTORY"
+Analyse every \fB*.json\fR graph config in \fIDIRECTORY\fR and print a
+side-by-side comparison table.
+.TP
+.BI \-\-graphs-dir " DIRECTORY"
+Directory of preset graph configs (default: \fB./graphs\fR, or the bundled
+presets when the directory is absent).
+.TP
+.B \-\-list
+List available graph presets in the graphs directory and exit.
+.TP
+.B \-\-no-plot
+Skip generating and saving the graph visualisation (headless / CI mode).
+.TP
+.BI \-\-explain-cvss " VECTOR"
+Explain, step by step, how a CVSS vector (e.g.
+.BR "AV:N/AC:L/PR:N/UI:N" )
+becomes an edge weight, then exit. No graph is analysed.
+.TP
+.B \-\-list-templates
+List the built-in graph-construction templates and exit.
+.TP
+.BI \-\-construct " TEMPLATE"
+Construct a graph from a named template (zero access) and analyse it.
+.TP
+.BI \-\-discover " FILE"
+Construct a graph from a discovery JSON file (describing what was observed vs
+inferred, with an access level) and analyse it.
+.TP
+.BI \-\-wifi-from-file " FILE"
+Construct a WiFi attack graph from a captured \fBnmcli\fR scan output file
+(offline; for demos/testing) and analyse it.
+.TP
+.BI \-\-scan-wifi " [\fIIFACE\fR]"
+Run a LIVE passive WiFi scan on \fIIFACE\fR (or auto-detect), construct the
+attack graph, and analyse it. Requires
+.BR \-\-i-am-authorized .
+Only scan networks you own or are authorised to assess.
+.TP
+.B \-\-i-am-authorized
+Authorisation gate for \fB\-\-scan-wifi\fR and \fB\-\-nmap-live\fR. By passing
+this flag you assert you are authorised to scan the target/airspace.
+.TP
+.B \-\-wifi-rescan
+With \fB\-\-scan-wifi\fR, trigger a fresh \fBnmcli\fR rescan first.
+.TP
+.BI \-\-nmap " FILE"
+Construct an attack graph from an nmap XML output file (\fBnmap \-oX\fR), the
+network INTERIOR layer. Offline and safe.
+.TP
+.BI \-\-nmap-live " TARGET"
+Run nmap LIVE against \fITARGET\fR (e.g.
+.BR 10.0.0.0/24 ),
+build the graph, and analyse it. Sends packets \(em requires
+.BR \-\-i-am-authorized .
+.TP
+.BI \-\-export " PATH"
+Also export the analysed graph to \fIPATH\fR. The format is chosen from the
+extension: \fB.graphml\fR/\fB.xml\fR (GraphML), \fB.dot\fR/\fB.gv\fR (Graphviz
+DOT), \fB.json\fR (round-trip config).
+.SH EXAMPLES
+.TP
+Analyse the default (bundled) preset:
+.B aga
+.TP
+Analyse a specific graph, headless:
+.B aga graphs/campus_cvss.json \-\-no-plot
+.TP
+Compare every graph in a directory:
+.B aga \-\-dir graphs/
+.TP
+Explain a CVSS vector:
+.B aga \-\-explain-cvss "AV:N/AC:L/PR:N/UI:N"
+.TP
+Build a graph from nmap output and export it:
+.B aga \-\-nmap scan.xml \-\-export out.graphml
+.SH ENVIRONMENT
+The base install is headless (depends only on networkx). Graph rendering needs
+matplotlib, installed via the \fBplot\fR extra
+(\fBpip install attack-graph-analysis[plot]\fR) or the Debian package's
+\fBpython3-matplotlib\fR recommendation.
+.SH FILES
+Graph configs are JSON. An edge may be written in three forms: an explicit
+weight \fI{"from","to","weight"}\fR, a compact triple \fI[u, v, w]\fR, or a
+CVSS-derived form \fI{"from","to","cvss"}\fR (the weight is computed at load
+time). Weights must be positive.
+.SH NOTES
+WiFi and nmap live scanning are passive/active respectively and are gated by
+\fB\-\-i-am-authorized\fR. This tool performs NO exploitation: no
+deauthentication, handshake capture, packet injection, or key cracking.
+.SH AUTHOR
+Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+.SH COPYRIGHT
+Copyright (C) 2026 Mohamed Khaled. Released under the MIT License.
+.SH "SEE ALSO"
+.BR dot (1),
+.BR nmap (1),
+.BR nmcli (1)

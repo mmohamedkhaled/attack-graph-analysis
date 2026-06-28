@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+# Build the attack-graph-analysis Python package with pybuild (pyproject).
+# matplotlib is *not* a build/test hard dependency (it is a Recommends), so the
+# build environment stays headless.
+
+export PYBUILD_NAME=attack-graph-analysis
+
+# Tell pybuild which Python implementation to target (single-version wheel).
+export PYBUILD_INTERPRETERS=python3
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+# The shipped pytest suite needs networkx (present as a build-dep); matplotlib
+# is optional and the headless tests pass --no-plot-free paths. Run against the
+# built copy, not the installed one, for reproducibility.
+override_dh_auto_test:
+	dh_auto_test -- --test-pytest

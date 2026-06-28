@@ -1,0 +1,5 @@
+attack-graph-analysis (0.1.0-1) UNRELEASED; urgency=medium
+
+  * Initial packaging for Debian/Kali (Closes: #TBD).
+
+ -- Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>  Sat, 28 Jun 2026 00:00:00 +0000

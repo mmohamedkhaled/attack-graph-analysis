@@ -1,0 +1,7 @@
+--\:XX\:XX\:XX\:01\:30:CafeGuest:2412 MHz:1:89:-- 
+--\:XX\:XX\:XX\:01\:34:CafeGuest:5180 MHz:36:85:WPA2
+1C\:7F\:2C\:F8\:69\:EC:HomeNet_5G:2412 MHz:1:75:WPA1 WPA2
+54\:69\:90\:36\:B1\:A8:NeighborNet:2462 MHz:11:64:WPA2
+2C\:27\:68\:D6\:55\:E0:OldPrinter_AP:2427 MHz:4:54:WEP
+9C\:69\:D1\:0A\:17\:54:FarAwayNet:2437 MHz:6:22:WPA3
+CC\:32\:E5\:48\:A8\:AE:LegacyWPA:2442 MHz:7:35:WPA1

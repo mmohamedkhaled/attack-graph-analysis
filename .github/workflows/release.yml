@@ -1,0 +1,90 @@
+name: Release
+
+# Publish to PyPI when a GitHub release is published, or a v* tag is pushed.
+#
+# Uses PyPI TRUSTED PUBLISHING (OIDC) -- no API token stored as a secret.
+# One-time setup required on PyPI:
+#   1. https://pypi.org/manage/account/publishing/
+#   2. Add a "pending publisher" (or configure the existing project):
+#        PyPI Project Name : attack-graph-analysis
+#        Owner             : mmohamedkhaled
+#        Repository        : attack-graph-analysis
+#        Workflow filename : release.yml
+#        Environment name  : pypi
+#   See: https://docs.pypi.org/trusted-publishers/
+
+on:
+  release:
+    types: [published]
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build distributions
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install build
+        run: |
+          python -m pip install --upgrade pip
+          pip install build
+
+      - name: Build sdist + wheel
+        run: python -m build
+
+      - name: Upload artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: build
+    runs-on: ubuntu-latest
+    # The 'pypi' environment MUST match the trusted-publisher config on PyPI.
+    environment:
+      name: pypi
+      url: https://pypi.org/project/attack-graph-analysis/
+    permissions:
+      # Required for OIDC trusted publishing.
+      id-token: write
+
+    steps:
+      - name: Download build artefacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  attach-github-release:
+    name: Attach dist to GitHub release
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    permissions:
+      contents: write
+    steps:
+      - name: Download build artefacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Upload to the GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*

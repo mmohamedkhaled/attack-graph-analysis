@@ -1,0 +1,131 @@
+# ---------------------------------------------------------------------------
+# Byte-compiled / optimised / DLL files
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ---------------------------------------------------------------------------
+# Distribution / packaging
+# ---------------------------------------------------------------------------
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ---------------------------------------------------------------------------
+# Installer logs / pip metadata
+# ---------------------------------------------------------------------------
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ---------------------------------------------------------------------------
+# Unit test / coverage reports
+# ---------------------------------------------------------------------------
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+htmlcov/
+
+# ---------------------------------------------------------------------------
+# Type checkers
+# ---------------------------------------------------------------------------
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# ---------------------------------------------------------------------------
+# Ruff
+# ---------------------------------------------------------------------------
+.ruff_cache/
+
+# ---------------------------------------------------------------------------
+# Virtual environments
+# ---------------------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# ---------------------------------------------------------------------------
+# Editors / IDEs
+# ---------------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.*.un~
+.project
+.pydevproject
+.settings/
+
+# ---------------------------------------------------------------------------
+# Operating system
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------------------------------------------------------------------------
+# Project-specific (attack-graph-analysis)
+# ---------------------------------------------------------------------------
+# Generated plots -- created on demand by `aga`, never committed.
+plots/
+
+# Live scan output -- NEVER commit real discovery data. Only synthetic
+# samples in discovery/ belong in the repo.
+*.pcap
+*.pcapng
+wifi_scan*.txt
+nmcli_*.txt
+nmap_*.xml
+*.nmap
+
+# Local graph / construction configs that may contain real hostnames.
+graphs/_local_*.json
+discovery/_local_*.json
+
+# Debian packaging build artefacts (when building .deb locally).
+*.deb
+*.changes
+*.buildinfo
+*.dsc
+*.tar.gz
+*.tar.xz
+debian/.debhelper/
+debian/debhelper-build-stamp
+debian/files
+debian/aga.substvars
+debian/aga/
+debian/tmp/
+
+# Built man page / docs
+*.1.gz
