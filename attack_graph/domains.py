@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Pluggable network *domains* -- the heart of the toolkit's generality.
 
 The package is a **security-analysis toolkit for arbitrary weighted directed

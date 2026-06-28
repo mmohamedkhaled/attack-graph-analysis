@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Graph visualisation.
 
 The layout is computed automatically so it works for **any** input graph:

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """nmap probe -- the *interior* layer of an attack graph.
 
 While the WiFi probe sees the **wireless perimeter** (which networks exist and

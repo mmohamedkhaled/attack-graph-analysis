@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """WiFi probe -- passive scanning that constructs an attack graph.
 
 Discovers nearby access points by listening to their beacon frames (a passive,

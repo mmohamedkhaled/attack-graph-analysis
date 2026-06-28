@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Graph *construction* -- building an attack graph from real access.
 
 The rest of the toolkit *analyses* a graph you hand it. This module does the

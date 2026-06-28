@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Graph export -- write a modelled graph to standard interchange formats.
 
 So the toolkit interoperates with the rest of the security/graph ecosystem,

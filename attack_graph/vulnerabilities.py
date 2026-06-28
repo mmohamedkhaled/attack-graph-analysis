@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Vulnerability hotspot detection -- *where* the weak points are.
 
 The scoring engine answers "how secure is the network overall?" and the

@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Core data models for the attack-graph toolkit.
 
 Everything the analyser produces flows through these dataclasses, keeping the

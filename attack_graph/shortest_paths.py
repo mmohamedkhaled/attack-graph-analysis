@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Shortest-path routines, including a from-scratch Bellman-Ford.
 
 The Bellman-Ford implementation here is deliberately *not* a NetworkX shortcut:

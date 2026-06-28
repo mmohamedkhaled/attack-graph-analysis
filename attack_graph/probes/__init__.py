@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Live network probes -- discovery backends that feed graph construction.
 
 A *probe* observes a real system and yields structured discovery data that the

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Shared pytest fixtures for the aga test-suite.
 
 These fixtures are deliberately cheap so that Debian's ``autopkgtest`` and

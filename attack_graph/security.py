@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Mohamed Khaled <mohamedabdelfatah572@aucegypt.edu>
+# SPDX-License-Identifier: MIT
+
 """Security analysis -- metrics, composite score, grade, and findings.
 
 The security level of an attack graph is summarised as a single **0-100
